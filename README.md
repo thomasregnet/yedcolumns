@@ -2,7 +2,8 @@
 Simple script to generate html for yEd ER-diagrams
 
 # Usage
-The call `./yedcolumns.pl b:u:id b:title foo bar` will result in this output:
+
+Calling `./yedcolumns.pl id:b:u title:b foo bar` produces this output:
 
 ```html
 <html>

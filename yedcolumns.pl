@@ -18,9 +18,7 @@ if ($opts{i}) {
 }
 
 for my $column (@ARGV) {
-  my @tags = split(':', $column);
-
-  my $column_name = pop @tags;
+  my ($column_name, @tags) = split(':', $column);
 
   say format_column($column_name, @tags)
 }
