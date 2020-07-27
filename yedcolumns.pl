@@ -17,10 +17,10 @@ if ($opts{i}) {
   say format_column('id', 'b', 'u');
 }
 
-for my $column (@ARGV) {
-  my ($column_name, @tags) = split(':', $column);
+for my $arg (@ARGV) {
+  my ($column, @tags) = split(':', $arg);
 
-  say format_column($column_name, @tags)
+  say format_column($column, @tags)
 }
 
 if ($opts{t}) {
@@ -31,27 +31,9 @@ if ($opts{t}) {
 say '</html>';
 
 sub format_column {
-  my ($column_name, @tags) = @_;
+  my ($column, @tags) = @_;
 
-  start_tags(@tags) . $column_name . end_tags(@tags) . '<br>'
-}
+  for my $tag (reverse @tags) { $column = "<$tag>$column</$tag>" }
 
-sub start_tags {
-  return tags('<', @_);
-}
-
-sub end_tags {
-  return tags('</', @_);
-}
-
-sub tags {
-  my ($prefix, @tags) = @_;
-
-  my $tags = q{};
-
-  for my $tag (@tags) {
-    $tags .= $prefix . $tag . '>';
-  }
-
-  return $tags;
+  return $column . '<br>';
 }
